@@ -1,87 +1,116 @@
-# 🩺 Diabetes Prediction Using Supervised Machine Learning Classification Algorithms
+<p align="center">
+  <img src="assets/nitr.png" alt="NIT Rourkela Logo" width="170"/>
+</p>
 
-A machine learning project that compares the performance of seven supervised classification algorithms for predicting diabetes using patient demographic and clinical data.
+<h1 align="center">
+Diabetes Prediction Using Supervised Machine Learning Classification Algorithms
+</h1>
 
-## Overview
+<p align="center">
+<b>A Project Report Submitted for</b><br>
+<b>One-Month Internship</b>
+</p>
 
-Early detection of diabetes can significantly reduce the risk of severe complications and improve patient outcomes. This project develops and evaluates multiple supervised machine learning models to classify whether a patient is diabetic based on health-related attributes.
+<p align="center">
+<b>Submitted by</b><br><br>
 
-All models are trained and evaluated using the same preprocessing pipeline, allowing a fair comparison of their predictive performance.
+<b>Md Amanullah</b><br>
+md.amanullah.cse.2024@nist.edu
+</p>
+
+<p align="center">
+Department of Computer Science and Engineering<br>
+National Institute of Technology Rourkela<br>
+Rourkela, Odisha 769008, India
+</p>
 
 ---
 
-##  Features
+## About the Project
 
-- Data preprocessing and cleaning
-- One-hot encoding for categorical features
-- Feature scaling where required
-- 80:20 stratified train-test split
-- Comparison of 7 supervised ML algorithms
-- 5-Fold Cross Validation
-- Performance evaluation using:
-  - Accuracy
-  - Precision
-  - Recall
-  - F1-Score
-  - Confusion Matrix
+This repository contains the implementation of a **Diabetes Prediction System** developed as part of a **One-Month Internship**. The project applies and compares multiple supervised machine learning classification algorithms to predict diabetes using demographic and clinical patient data.
+
+The project implements a complete machine learning pipeline including:
+
+- Data preprocessing
+- Feature engineering
+- Model training
+- Cross-validation
+- Performance evaluation
+- Comparative analysis
+
+A total of **seven supervised learning algorithms** are trained and evaluated using a common preprocessing pipeline to ensure a fair comparison.
 
 ---
 
-##  Dataset
+## Objectives
 
-**Source:** [Kaggle - Diabetes Prediction Dataset](https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset)
+- Develop an accurate diabetes prediction model.
+- Compare multiple supervised machine learning algorithms.
+- Evaluate each classifier using standard performance metrics.
+- Identify the most suitable algorithm for diabetes prediction.
 
-**Dataset Characteristics**
+---
 
-- ~100,000 patient records
-- Demographic and clinical attributes
-- Binary classification problem
+## Dataset
+
+**Source:** Kaggle – Diabetes Prediction Dataset
+
+The dataset contains approximately **100,000 patient records** consisting of demographic and clinical attributes.
 
 ### Features
 
 | Feature | Description |
 |----------|-------------|
-| Gender | Patient gender |
-| Age | Age in years |
-| Hypertension | Presence of hypertension |
-| Heart Disease | Presence of heart disease |
-| Smoking History | Smoking status |
+| Gender | Patient Gender |
+| Age | Age |
+| Hypertension | Hypertension Status |
+| Heart Disease | Heart Disease Status |
+| Smoking History | Smoking Status |
 | BMI | Body Mass Index |
-| HbA1c Level | Average blood glucose level |
-| Blood Glucose Level | Blood glucose measurement |
-| Diabetes | Target variable (0 = No, 1 = Yes) |
+| HbA1c Level | Average Blood Sugar Level |
+| Blood Glucose Level | Blood Glucose Measurement |
+| Diabetes | Target Variable (0 = Non-Diabetic, 1 = Diabetic) |
 
 ---
 
-##  Data Preprocessing
+## Data Preprocessing
 
-The preprocessing pipeline includes:
+The preprocessing pipeline consists of:
 
-- Removal of duplicate records
+- Duplicate record removal
 - One-hot encoding of categorical variables
-- Stratified train-test split (80:20)
-- Standardization of numerical features for distance-based algorithms
-- Handling class imbalance using class weights where applicable
+- Stratified 80:20 train-test split
+- Feature standardization using StandardScaler
+- Class imbalance handling using `class_weight="balanced"` where applicable
 
----
-
-##  Machine Learning Models
-
-The following supervised learning algorithms were implemented:
+Algorithms requiring feature scaling:
 
 - Logistic Regression
-- K-Nearest Neighbors (KNN)
-- Decision Tree
-- Random Forest
-- Support Vector Machine (Linear SVM)
-- XGBoost
-- Gradient Boosting
+- K-Nearest Neighbors
+- Support Vector Machine
+
+Tree-based models were trained using unscaled features.
 
 ---
 
-##  Evaluation Metrics
+## Machine Learning Models
 
-Each model is evaluated using:
+| Algorithm | Category |
+|------------|----------|
+| Logistic Regression | Linear Classification |
+| K-Nearest Neighbors | Instance-Based Learning |
+| Decision Tree | Decision Tree |
+| Random Forest | Bagging Ensemble |
+| Support Vector Machine | Margin-Based Classification |
+| XGBoost | Gradient Boosting Ensemble |
+| Gradient Boosting | Boosting Ensemble |
+
+---
+
+## Evaluation Metrics
+
+The following metrics are used to evaluate each model:
 
 - Accuracy
 - Precision
@@ -92,49 +121,54 @@ Each model is evaluated using:
 
 ---
 
-##  Project Structure
+## Model Performance
 
-```text
-.
-├── main.py
-├── diabetes.py
-├── evaluation.py
-├── logistic_reg.py
-├── knn.py
-├── decisiontree.py
-├── rf.py
-├── svmm.py
-├── xboost.py
-├── gb.py
-├── diabetes.csv
-├── requirements.txt
-└── README.md
-```
+| Model | Accuracy | Precision | Recall | F1-Score | 5-Fold CV |
+|:-------------------------------|:-------:|:---------:|:------:|:-------:|:---------:|
+| Logistic Regression | 88.46% | 42.54% | **87.91%** | 57.34% | 88.72% |
+| Support Vector Machine | 88.48% | 42.59% | **87.97%** | 57.40% | 88.73% |
+| K-Nearest Neighbors | 95.96% | 88.98% | 61.91% | 73.02% | 95.90% |
+| Decision Tree | 95.04% | 71.14% | 73.70% | 72.40% | 95.05% |
+| Random Forest | 96.95% | 94.90% | 69.10% | 79.97% | 96.84% |
+| XGBoost | 97.05% | 95.34% | 69.99% | 80.72% | 96.93% |
+| **Gradient Boosting** | **97.18%** | **98.65%** | 68.99% | **81.19%** | **97.08%** |
+
+Gradient Boosting achieved the highest overall accuracy and F1-score. Logistic Regression and Support Vector Machine achieved the highest recall, making them suitable for high-sensitivity screening applications.
 
 ---
 
-##  Model Performance
+## Confusion Matrix Comparison
 
-| Model | Accuracy |
-|--------|----------|
-| Logistic Regression | 88.46% |
-| SVM | 88.48% |
-| KNN | 95.96% |
-| Decision Tree | 95.04% |
-| Random Forest | 96.95% |
-| XGBoost | 97.05% |
-| **Gradient Boosting** | **97.18%** |
+| Model | TN | FP | FN | TP |
+|:-------------------------------|------:|------:|------:|------:|
+| Logistic Regression | 15,520 | 2,014 | 205 | 1,491 |
+| Support Vector Machine | 15,523 | 2,011 | 204 | 1,492 |
+| K-Nearest Neighbors | 17,404 | 130 | 646 | 1,050 |
+| Decision Tree | 17,027 | 507 | 446 | 1,250 |
+| Random Forest | 17,471 | 63 | 524 | 1,172 |
+| XGBoost | 17,476 | 58 | 509 | 1,187 |
+| **Gradient Boosting** | **17,518** | **16** | 526 | 1,170 |
 
-Gradient Boosting achieved the highest overall accuracy, while Logistic Regression and SVM demonstrated higher recall for the diabetic class, making them suitable for screening-oriented applications. These results are documented in your report. :contentReference[oaicite:0]{index=0}
+### Key Observations
 
----
+- Gradient Boosting achieved the highest accuracy and F1-score.
+- XGBoost and Random Forest performed comparably to Gradient Boosting.
+- Logistic Regression and Support Vector Machine achieved the highest recall, making them effective for screening applications.
+- Ensemble learning methods outperformed individual classifiers in overall predictive performance.
 
-##  Installation
+
+
+## Installation
 
 Clone the repository:
 
 ```bash
 git clone https://github.com/amaan-exe/diabetes_prediction.git
+```
+
+Navigate to the project directory:
+
+```bash
 cd diabetes_prediction
 ```
 
@@ -154,7 +188,7 @@ Execute all models:
 python main.py
 ```
 
-Or run an individual model:
+Run individual models:
 
 ```bash
 python logistic_reg.py
@@ -162,39 +196,65 @@ python knn.py
 python decisiontree.py
 python rf.py
 python svmm.py
-python xboost.py
 python gb.py
+python xboost.py
 ```
+
 ---
 
-##  Technologies Used
+## Results
 
-- Python 3.x
+The repository includes:
+
+- Dataset distribution
+- Performance comparison charts
+- Confusion matrices for all models
+- Confusion matrix of the best-performing model
+
+---
+
+## Future Improvements
+
+- Hyperparameter tuning
+- SMOTE for class imbalance
+- Feature selection
+- Explainable AI using SHAP or LIME
+- Deep learning models
+- Flask/FastAPI deployment
+- Docker support
+- Cloud deployment
+
+---
+
+## Technologies Used
+
+- Python
 - Pandas
 - NumPy
 - Scikit-learn
 - XGBoost
+- Matplotlib
 
 ---
 
-##  Future Improvements
+## Project Report
 
-- Hyperparameter optimization using Grid Search or Random Search
-- SMOTE for class imbalance handling
-- Feature selection techniques
-- Model explainability using SHAP or LIME
-- Deep Learning implementation
-- Flask/FastAPI web deployment
-- Docker containerization
+The complete internship report describing the methodology, implementation, experimental setup, evaluation metrics, and comparative analysis is included in this repository.
 
 ---
 
-##  Author
+## Author
 
 **Md Amanullah**
 
-Computer Science & Engineering
+Department of Computer Science and Engineering
 
-GitHub: https://github.com/amaan-exe
+National Institute of Technology Rourkela
 
-Email : md.amanullah.cse.2024@nist.edu
+Email: **md.amanullah.cse.2024@nist.edu**
+
+GitHub: **https://github.com/amaan-exe**
+
+---
+
+If you find this project useful, consider starring the repository.
